@@ -37,8 +37,31 @@ def predict(data: PatientData):
         risk_result = "X"
         message = "안 위험"
 
+        reasons = []
+
+    if risk_result == "O":
+
+        if data.glucose < 70:
+            reasons.append("혈당이 낮습니다.")
+
+        if data.fasting_hours >= 8:
+            reasons.append("공복 시간이 깁니다.")
+
+        if data.insulin_units >= 10:
+            reasons.append("인슐린 용량이 높습니다.")
+
+        if data.weight < 55:
+            reasons.append("체중이 낮습니다.")
+
+        if len(reasons) == 0:
+            reasons.append("모델이 과거 데이터 패턴에서 위험 가능성을 감지했습니다.")
+
+    else:
+        reasons.append("현재 입력값에서는 뚜렷한 위험 요인이 감지되지 않았습니다.")
     return {
         "risk_probability": float(prediction),
+        "risk_percent": round(float(prediction) * 100, 2),
         "risk_result": risk_result,
-        "message": message
+        "message": message,
+        "reasons": reasons
     }
