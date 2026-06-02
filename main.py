@@ -37,7 +37,7 @@ def predict(data: PatientData):
         risk_result = "X"
         message = "안 위험"
 
-        reasons = []
+    reasons = []
 
     if risk_result == "O":
 
