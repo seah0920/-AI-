@@ -73,10 +73,10 @@ def predict(data: PatientData):
     # 최종 판정
     if risk_score >= 3:
         risk_result = "O"
-        message = "위험"
+        message = "고위험"
     else:
         risk_result = "X"
-        message = "안 위험"
+        message = "저위험"
 
     if len(reasons) == 0:
         reasons.append("입력값에서 뚜렷한 위험 요인이 감지되지 않았습니다.")
